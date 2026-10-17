@@ -1,0 +1,922 @@
+<title>“A bowl of ramen, for me, is…” — Manpuku Mascot Storyboard</title>
+<style>
+  :root {
+    --ground:#E7E7E2;
+    --surface:#F4F3EF;
+    --panel:#FBFAF7;
+    --ink:#0F1215;
+    --ink-2:#2E3539;
+    --ink-3:#5C646A;
+    --rule:#C3C4BE;
+    --rule-strong:#9DA09A;
+    --accent:#163B51;
+    --accent-soft:rgba(22,59,81,.12);
+    --sketch:#1F2529;
+
+    --font-display:"Futura","Avenir Next","Century Gothic","Trebuchet MS",sans-serif;
+    --font-ui:ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+
+    --frame-w:330px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#121518;
+      --surface:#191D21;
+      --panel:#1F2429;
+      --ink:#FFFFFF;
+      --ink-2:#E9ECEE;
+      --ink-3:#AFB7BD;
+      --rule:#3B434A;
+      --rule-strong:#5A646C;
+      --accent:#A6CDE4;
+      --accent-soft:rgba(166,205,228,.16);
+      --sketch:#E3E7EA;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#121518;
+    --surface:#191D21;
+    --panel:#1F2429;
+    --ink:#FFFFFF;
+    --ink-2:#E9ECEE;
+    --ink-3:#AFB7BD;
+    --rule:#3B434A;
+    --rule-strong:#5A646C;
+    --accent:#A6CDE4;
+    --accent-soft:rgba(166,205,228,.16);
+    --sketch:#E3E7EA;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--font-ui);
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding:clamp(28px,5vw,64px) clamp(18px,4vw,40px) 72px;
+  }
+
+  /* ---------- slate ---------- */
+  .slate{
+    padding-bottom:22px;
+    border-bottom:1.5px solid var(--rule-strong);
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:.6875rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .title{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(.95rem,4.05vw,2.6rem);
+    line-height:1.1;
+    letter-spacing:.055em;
+    text-transform:uppercase;
+    white-space:nowrap;
+    margin:0;
+  }
+  .title .quiet{
+    display:block;margin-top:14px;
+    color:var(--ink-3);
+    font-size:clamp(.5rem,1.35vw,.78rem);
+    letter-spacing:.16em;
+    white-space:normal;
+  }
+
+  /* ---------- frame grid ---------- */
+  .board{
+    margin-top:44px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(var(--frame-w),1fr));
+    gap:clamp(22px,3vw,36px) clamp(18px,2.4vw,30px);
+  }
+  .frame{
+    display:flex;flex-direction:column;
+    opacity:0;
+    animation:rise .55s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .frame{animation:none;opacity:1}
+  }
+
+  .plate{
+    position:relative;
+    background:var(--panel);
+    border:1.5px solid var(--ink);
+    aspect-ratio:16/9;
+    overflow:hidden;
+  }
+  .plate svg{display:block;width:100%;height:100%;color:var(--sketch)}
+  .slug{
+    position:absolute;top:0;left:0;
+    background:#15181B;color:#FFFFFF;
+    font-family:var(--font-mono);font-size:.625rem;
+    letter-spacing:.1em;padding:3px 7px 2px;
+    font-variant-numeric:tabular-nums;
+  }
+  .dur{
+    position:absolute;bottom:0;right:0;
+    font-family:var(--font-mono);font-size:.625rem;
+    letter-spacing:.08em;color:var(--ink-2);
+    background:var(--panel);
+    border-top:1.5px solid var(--ink);border-left:1.5px solid var(--ink);
+    padding:2px 6px;
+    font-variant-numeric:tabular-nums;
+  }
+
+  .caption{
+    margin:0;
+    padding-top:11px;
+    font-size:.8125rem;
+    line-height:1.5;
+    color:var(--ink-2);
+    text-wrap:pretty;
+  }
+
+  /* ---------- lower sheets ---------- */
+  .sheets{
+    margin-top:clamp(48px,6vw,76px);
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+    gap:clamp(24px,3vw,40px);
+    align-items:start;
+  }
+  .sheet{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    padding:clamp(20px,2.4vw,30px);
+  }
+  .sheet h2{
+    font-family:var(--font-mono);
+    font-size:.6875rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 18px;font-weight:500;
+  }
+  .prompts{display:grid;gap:14px;margin:0 0 18px}
+  .prompt-card{
+    border:1.5px solid var(--ink);
+    background:var(--panel);
+    padding:18px 20px;
+    font-family:var(--font-display);
+    font-size:clamp(1.15rem,2.3vw,1.45rem);
+    line-height:1.25;letter-spacing:.012em;
+    text-wrap:balance;
+  }
+  .prompt-card small{
+    display:block;margin-top:11px;
+    font-family:var(--font-mono);font-size:.5625rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-3);
+  }
+  .statement-note{margin:0;font-size:.875rem;line-height:1.55;color:var(--ink-2)}
+
+  .qs{margin:0;padding:0;list-style:none;display:grid;gap:13px}
+  .qs li{
+    display:grid;grid-template-columns:1fr auto;gap:4px 14px;
+    align-items:baseline;
+    padding-bottom:13px;border-bottom:1px solid var(--rule);
+    font-size:.9375rem;line-height:1.45;
+  }
+  .qs li:last-child{border-bottom:0;padding-bottom:0}
+  .qs .buys{
+    font-family:var(--font-mono);font-size:.625rem;letter-spacing:.1em;
+    color:var(--ink-3);white-space:nowrap;font-variant-numeric:tabular-nums;
+  }
+
+  footer{
+    margin-top:clamp(40px,5vw,64px);
+    padding-top:18px;
+    border-top:1px solid var(--rule);
+    font-family:var(--font-mono);font-size:.625rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-3);
+    display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between;
+  }
+</style>
+
+<svg class="sprite" aria-hidden="true" width="0" height="0" style="position:absolute;color:var(--sketch)">
+  <defs>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(38)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1" opacity=".3"/>
+    </pattern>
+    <pattern id="hatchFine" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-42)">
+      <line x1="0" y1="0" x2="0" y2="4" stroke="currentColor" stroke-width=".7" opacity=".22"/>
+    </pattern>
+    <pattern id="grain" width="9" height="9" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r=".55" fill="currentColor" opacity=".35"/>
+      <circle cx="6" cy="7" r=".45" fill="currentColor" opacity=".3"/>
+    </pattern>
+    <radialGradient id="vig" cx="50%" cy="46%" r="74%">
+      <stop offset="50%" stop-color="currentColor" stop-opacity="0"/>
+      <stop offset="100%" stop-color="currentColor" stop-opacity=".26"/>
+    </radialGradient>
+    <linearGradient id="steamUp" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="currentColor" stop-opacity=".16"/>
+      <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fadeDown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="currentColor" stop-opacity=".24"/>
+      <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <header class="slate">
+    <p class="eyebrow">Brand film · Storyboard v1</p>
+    <h1 class="title">A bowl of ramen, for me, is…
+      <span class="quiet">Manpuku Mascot — prompt-led short</span>
+    </h1>
+  </header>
+
+  <main class="board">
+
+    <!-- 01 ============================================================ -->
+    <article class="frame" style="animation-delay:.00s">
+      <div class="plate">
+        <span class="slug">01</span><span class="dur">6s</span>
+        <svg viewBox="0 0 320 180" role="img" aria-label="Wide interior: the chef alone behind the counter at 04:15, half the lights on, menu strips and bottles on the back wall.">
+          <!-- ceiling -->
+          <rect x="0" y="0" width="320" height="16" fill="currentColor" opacity=".13"/>
+          <line x1="0" y1="7" x2="320" y2="7" stroke="currentColor" stroke-width=".6" opacity=".45"/>
+          <line x1="0" y1="16" x2="320" y2="16" stroke="currentColor" stroke-width="1.1"/>
+          <!-- back wall + tile -->
+          <rect x="0" y="16" width="320" height="86" fill="currentColor" opacity=".06"/>
+          <g stroke="currentColor" stroke-width=".5" opacity=".3">
+            <path d="M0 30h320M0 44h320M0 58h320M0 72h320M0 86h320"/>
+            <path d="M20 16v86M44 16v86M68 16v86M92 16v86M116 16v86M140 16v86M164 16v86M188 16v86M212 16v86M236 16v86M260 16v86M284 16v86M308 16v86"/>
+          </g>
+          <!-- doorway + noren -->
+          <rect x="246" y="16" width="74" height="86" fill="currentColor" opacity=".3"/>
+          <rect x="244" y="10" width="78" height="6" fill="var(--panel)" stroke="currentColor" stroke-width="1.1"/>
+          <g stroke="currentColor" stroke-width=".9" fill="var(--panel)">
+            <path d="M248 16v30q6 4 12 0V16z"/><path d="M262 16v32q6 4 12 0V16z"/>
+            <path d="M276 16v30q6 4 12 0V16z"/><path d="M290 16v32q6 4 12 0V16z"/>
+            <path d="M304 16v31q6 4 12 0V16z"/>
+          </g>
+          <g stroke="currentColor" stroke-width="1" opacity=".7">
+            <path d="M251 23h7M253 27h3M265 22v9M263 25h6M279 23h7M281 27h3M293 22v9M291 26h6M307 23h7"/>
+          </g>
+          <!-- menu strips -->
+          <g stroke="currentColor" stroke-width=".9" fill="var(--panel)">
+            <rect x="14" y="20" width="13" height="46"/><rect x="32" y="20" width="13" height="52"/>
+            <rect x="50" y="20" width="13" height="44"/><rect x="68" y="20" width="13" height="50"/>
+          </g>
+          <g stroke="currentColor" stroke-width=".7" opacity=".55">
+            <path d="M18 28h5M18 34h5M18 40h5M18 46h5M18 52h5"/>
+            <path d="M36 28h5M36 34h5M36 40h5M36 46h5M36 52h5M36 58h5"/>
+            <path d="M54 28h5M54 34h5M54 40h5M54 46h5"/>
+            <path d="M72 28h5M72 34h5M72 40h5M72 46h5M72 52h5"/>
+          </g>
+          <!-- shelf + bottles -->
+          <line x1="94" y1="44" x2="198" y2="44" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="94" y1="46" x2="198" y2="46" stroke="currentColor" stroke-width=".6" opacity=".5"/>
+          <g stroke="currentColor" stroke-width=".9" fill="var(--panel)">
+            <path d="M99 44V32q0-3 3-3t3 3v12z"/><path d="M110 44V28h7v16z"/>
+            <path d="M122 44V34q0-4 4-4t4 4v10z"/><path d="M136 44V26h5v18z"/>
+            <path d="M147 44V33h8v11z"/><path d="M160 44V30q0-3 3-3t3 3v14z"/>
+            <path d="M173 44V34h7v10z"/><path d="M185 44V28h6v16z"/>
+          </g>
+          <g stroke="currentColor" stroke-width=".7" opacity=".5">
+            <path d="M99 38h6M110 36h7M122 39h8M136 34h5M147 39h8M160 38h6M173 39h7M185 36h6"/>
+          </g>
+          <!-- clock, 04:15 -->
+          <circle cx="216" cy="34" r="12" fill="var(--panel)" stroke="currentColor" stroke-width="1.2"/>
+          <g stroke="currentColor" stroke-width=".6" opacity=".6"><path d="M216 24v2.5M226 34h-2.5M216 44v-2.5M206 34h2.5"/></g>
+          <path d="M216 34h9M216 34l6 4" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="216" cy="34" r="1.3" fill="currentColor"/>
+          <!-- pendants + light pools -->
+          <path d="M108 0v24M212 0v24" stroke="currentColor" stroke-width=".9"/>
+          <path d="M96 38l12-14 12 14z" fill="currentColor" fill-opacity=".34" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M200 38l12-14 12 14z" fill="currentColor" fill-opacity=".34" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M96 38L74 118h68L120 38z" fill="var(--panel)" opacity=".5"/>
+          <path d="M200 38l-22 80h68l-22-80z" fill="var(--panel)" opacity=".5"/>
+          <!-- back counter + pots -->
+          <line x1="0" y1="102" x2="320" y2="102" stroke="currentColor" stroke-width="1.2"/>
+          <g stroke="currentColor" stroke-width="1.1" fill="var(--panel)">
+            <path d="M18 102V82h32v20z"/><ellipse cx="34" cy="82" rx="16" ry="4.2"/>
+            <path d="M58 102V88h22v14z"/><ellipse cx="69" cy="88" rx="11" ry="3.2"/>
+          </g>
+          <path d="M20 90h28M60 94h18" stroke="currentColor" stroke-width=".6" opacity=".45"/>
+          <!-- chef -->
+          <path d="M138 70a12 13 0 1124 0 12 13 0 01-24 0z" fill="var(--panel)" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M136 63q14-8 28 0l-1 5q-13-6-26 0z" fill="currentColor" fill-opacity=".38" stroke="currentColor" stroke-width=".9"/>
+          <g stroke="currentColor" stroke-width=".8" opacity=".6"><path d="M143 75q2.5 2 5 0M152 75q2.5 2 5 0M147 83q3 1.5 6 0"/></g>
+          <path d="M145 84v6M155 84v6" stroke="currentColor" stroke-width=".9"/>
+          <path d="M127 118q0-25 13-29l10-2 10 2q13 4 13 29" fill="var(--panel)" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M138 100h24v18h-24z" fill="currentColor" opacity=".13"/>
+          <path d="M140 92l10 7 10-7" stroke="currentColor" stroke-width=".9" fill="none"/>
+          <path d="M132 104h36" stroke="currentColor" stroke-width=".7" opacity=".5"/>
+          <path d="M129 101q-6 8-5 17M171 101q6 8 5 17" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <!-- front counter -->
+          <rect x="0" y="118" width="320" height="4" fill="currentColor" opacity=".3"/>
+          <rect x="0" y="122" width="320" height="14" fill="currentColor" opacity=".17"/>
+          <line x1="0" y1="118" x2="320" y2="118" stroke="currentColor" stroke-width="1.6"/>
+          <line x1="0" y1="122" x2="320" y2="122" stroke="currentColor" stroke-width=".9"/>
+          <line x1="0" y1="136" x2="320" y2="136" stroke="currentColor" stroke-width="1.6"/>
+          <g stroke="currentColor" stroke-width=".45" opacity=".3"><path d="M0 126h320M0 130h320M0 133h320"/></g>
+          <!-- condiments + chopstick holder -->
+          <g stroke="currentColor" stroke-width=".9" fill="var(--panel)">
+            <rect x="86" y="108" width="15" height="10"/><rect x="89" y="103" width="3.5" height="5"/><rect x="95" y="102" width="3.5" height="6"/>
+            <rect x="214" y="109" width="14" height="9"/><rect x="217" y="104" width="3.5" height="5"/><rect x="223" y="103" width="3.5" height="6"/>
+            <path d="M58 118v-7h11v7z"/>
+          </g>
+          <path d="M60 111l2-7M64 111l1-7M67.5 111v-7" stroke="currentColor" stroke-width=".8"/>
+          <!-- floor -->
+          <rect x="0" y="136" width="320" height="44" fill="currentColor" opacity=".09"/>
+          <g stroke="currentColor" stroke-width=".45" opacity=".28">
+            <path d="M160 136L16 180M160 136L82 180M160 136v44M160 136l78 44M160 136l144 44M0 152h320M0 167h320"/>
+          </g>
+          <!-- stools -->
+          <g fill="var(--panel)" stroke="currentColor" stroke-width="1.2">
+            <ellipse cx="44" cy="146" rx="18" ry="6"/><ellipse cx="124" cy="150" rx="19" ry="6"/>
+            <ellipse cx="206" cy="150" rx="19" ry="6"/><ellipse cx="286" cy="146" rx="18" ry="6"/>
+          </g>
+          <g stroke="currentColor" stroke-width="1.3" fill="none">
+            <path d="M36 150v24M52 150v24M34 166h20"/><path d="M115 154v26M133 154v26M113 171h22"/>
+            <path d="M197 154v26M215 154v26M195 171h22"/><path d="M278 150v24M294 150v24M276 166h20"/>
+          </g>
+          <rect x="0" y="0" width="320" height="180" fill="url(#vig)"/>
+        </svg>
+      </div>
+      <p class="caption">Wide and locked off — the chef alone in the shop at 04:15, half the lights on, before anyone has eaten anything. The prompt sits on screen over this frame.</p>
+    </article>
+
+    <!-- 02 ============================================================ -->
+    <article class="frame" style="animation-delay:.05s">
+      <div class="plate">
+        <span class="slug">02</span><span class="dur">5s</span>
+        <svg viewBox="0 0 320 180" role="img" aria-label="Low angle in the back kitchen: hands lowering pork bones into a tall stockpot over a lit burner.">
+          <rect x="0" y="0" width="320" height="180" fill="currentColor" opacity=".05"/>
+          <!-- tiled back wall -->
+          <g stroke="currentColor" stroke-width=".5" opacity=".28">
+            <path d="M0 18h320M0 36h320M0 54h320M0 72h320M0 90h320M0 108h320"/>
+            <path d="M24 0v126M60 0v126M96 0v126M132 0v126M168 0v126M204 0v126M240 0v126M276 0v126M312 0v126"/>
+          </g>
+          <!-- wall rack with pans -->
+          <line x1="248" y1="22" x2="318" y2="22" stroke="currentColor" stroke-width="1.1"/>
+          <g fill="var(--panel)" stroke="currentColor" stroke-width="1">
+            <circle cx="262" cy="36" r="11"/><circle cx="288" cy="34" r="9"/><circle cx="308" cy="37" r="7"/>
+          </g>
+          <g stroke="currentColor" stroke-width=".9"><path d="M262 25v-3M288 25v-3M308 30v-8"/></g>
+          <g stroke="currentColor" stroke-width=".6" opacity=".5"><circle cx="262" cy="36" r="6" fill="none"/><circle cx="288" cy="34" r="5" fill="none"/></g>
+          <!-- tap + tray of bones, left -->
+          <path d="M12 16v22q0 6 8 6h10" stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <path d="M30 44v6" stroke="currentColor" stroke-width="1" opacity=".55"/>
+          <g fill="var(--panel)" stroke="currentColor" stroke-width="1"><rect x="4" y="62" width="48" height="20" rx="2"/></g>
+          <g stroke="currentColor" stroke-width=".9" fill="var(--panel)">
+            <path d="M10 76q-4-3-2-6t6 0l16 3q5 1 4 4t-6 2z"/>
+            <path d="M24 70q-4-3-1-5t6 1l14 4q4 2 2 4t-6 1z"/>
+          </g>
+          <!-- steam field -->
+          <rect x="60" y="0" width="200" height="96" fill="url(#steamUp)"/>
+          <!-- forearms -->
+          <path d="M92 0v34q0 11 11 15l22 8" fill="var(--panel)" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M228 0v34q0 11-11 15l-22 8" fill="var(--panel)" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M96 22h22M202 22h22" stroke="currentColor" stroke-width="1.1" opacity=".6"/>
+          <path d="M94 26h26M200 26h26" stroke="currentColor" stroke-width=".7" opacity=".45"/>
+          <!-- hands -->
+          <path d="M125 57q-7 4-5 10t12 6l14-2" fill="var(--panel)" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M195 57q7 4 5 10t-12 6l-14-2" fill="var(--panel)" stroke="currentColor" stroke-width="1.3"/>
+          <g stroke="currentColor" stroke-width=".7" opacity=".5"><path d="M131 62v9M137 63v9M186 62v9M180 63v9"/></g>
+          <!-- bones -->
+          <path d="M142 74q-10-5-13 2t8 9l28 10q11 4 15-3t-7-12z" fill="var(--panel)" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M136 78q6 3 13 5M150 84q8 3 16 6" stroke="currentColor" stroke-width=".7" opacity=".55"/>
+          <ellipse cx="156" cy="82" rx="7" ry="4" fill="currentColor" opacity=".25" transform="rotate(20 156 82)"/>
+          <!-- pot -->
+          <ellipse cx="160" cy="98" rx="78" ry="17" fill="currentColor" fill-opacity=".2" stroke="currentColor" stroke-width="1.7"/>
+          <ellipse cx="160" cy="98" rx="70" ry="13" fill="none" stroke="currentColor" stroke-width=".7" opacity=".5"/>
+          <path d="M82 98l10 60h136l10-60" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-width="1.9"/>
+          <path d="M87 118h146M89 134h142" stroke="currentColor" stroke-width=".7" opacity=".4"/>
+          <g fill="currentColor" opacity=".45"><circle cx="100" cy="112" r="1.3"/><circle cx="220" cy="112" r="1.3"/><circle cx="104" cy="140" r="1.3"/><circle cx="216" cy="140" r="1.3"/></g>
+          <path d="M82 106q-16 2-16 11t14 9M238 106q16 2 16 11t-14 9" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <!-- steam curls -->
+          <g stroke="currentColor" stroke-width="1.1" fill="none" opacity=".45">
+            <path d="M112 86q-9-15 2-24t0-21M160 82q-10-17 2-28t-1-22M208 86q-9-15 2-24t0-21M136 80q-7-13 2-20M184 80q-7-13 2-20"/>
+          </g>
+          <!-- burner -->
+          <rect x="44" y="158" width="232" height="6" fill="currentColor" opacity=".3"/>
+          <line x1="44" y1="158" x2="276" y2="158" stroke="currentColor" stroke-width="1.7"/>
+          <g stroke="currentColor" stroke-width="1.1" fill="none" opacity=".6">
+            <path d="M100 164q3 8 6 14M130 164q1 8 3 14M160 164v14M190 164q-1 8-3 14M220 164q-3 8-6 14"/>
+          </g>
+          <g stroke="currentColor" stroke-width=".7" fill="none" opacity=".35">
+            <path d="M115 164q2 7 4 12M145 164q1 7 2 12M175 164q-1 7-2 12M205 164q-2 7-4 12"/>
+          </g>
+          <rect x="0" y="0" width="320" height="180" fill="url(#vig)"/>
+        </svg>
+      </div>
+      <p class="caption">Low angle on the pot rim in the back kitchen as the bones go in. Sync sound only — no music this early.</p>
+    </article>
+
+    <!-- 03 ============================================================ -->
+    <article class="frame" style="animation-delay:.10s">
+      <div class="plate">
+        <span class="slug">03</span><span class="dur">7s</span>
+        <svg viewBox="0 0 320 180" role="img" aria-label="Macro on the surface of the broth at a rolling boil, lens fogging, a skimmer entering frame.">
+          <!-- pot rim, top of frame -->
+          <path d="M0 0h320v26q-160 16-320 0z" fill="currentColor" opacity=".4"/>
+          <path d="M0 26q160 16 320 0" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M0 20q160 15 320 0" fill="none" stroke="currentColor" stroke-width=".7" opacity=".5"/>
+          <!-- broth field -->
+          <rect x="0" y="26" width="320" height="154" fill="currentColor" opacity=".17"/>
+          <rect x="0" y="26" width="320" height="154" fill="url(#hatch)" opacity=".5"/>
+          <!-- fat slicks -->
+          <g fill="currentColor" opacity=".14">
+            <ellipse cx="70" cy="62" rx="40" ry="14"/><ellipse cx="236" cy="70" rx="46" ry="16"/>
+            <ellipse cx="150" cy="150" rx="52" ry="18"/>
+          </g>
+          <!-- bubbles: big -->
+          <g stroke="currentColor" fill="var(--panel)">
+            <circle cx="56" cy="88" r="20" stroke-width="1.6" fill-opacity=".55"/>
+            <circle cx="112" cy="118" r="27" stroke-width="1.7" fill-opacity=".5"/>
+            <circle cx="214" cy="112" r="30" stroke-width="1.7" fill-opacity=".5"/>
+            <circle cx="276" cy="74" r="18" stroke-width="1.5" fill-opacity=".55"/>
+            <circle cx="166" cy="64" r="14" stroke-width="1.4" fill-opacity=".55"/>
+          </g>
+          <!-- bubble inner rings + highlights -->
+          <g stroke="currentColor" fill="none" opacity=".55">
+            <circle cx="56" cy="88" r="11" stroke-width=".9"/><circle cx="112" cy="118" r="15" stroke-width="1"/>
+            <circle cx="214" cy="112" r="17" stroke-width="1"/><circle cx="276" cy="74" r="10" stroke-width=".8"/>
+            <circle cx="166" cy="64" r="7" stroke-width=".8"/>
+          </g>
+          <g stroke="currentColor" stroke-width="1.1" fill="none" opacity=".8">
+            <path d="M46 80q6-6 14-4M102 108q7-7 17-5M204 102q8-7 18-5M268 66q5-5 12-3"/>
+          </g>
+          <!-- bubbles: small cluster -->
+          <g stroke="currentColor" stroke-width="1.1" fill="var(--panel)" fill-opacity=".45">
+            <circle cx="150" cy="96" r="7"/><circle cx="138" cy="84" r="5"/><circle cx="172" cy="92" r="6"/>
+            <circle cx="88" cy="60" r="6"/><circle cx="24" cy="120" r="9"/><circle cx="40" cy="142" r="7"/>
+            <circle cx="296" cy="120" r="10"/><circle cx="282" cy="142" r="6"/><circle cx="246" cy="152" r="8"/>
+            <circle cx="162" cy="134" r="9"/><circle cx="184" cy="156" r="7"/><circle cx="74" cy="160" r="6"/>
+            <circle cx="118" cy="160" r="5"/><circle cx="196" cy="44" r="5"/><circle cx="124" cy="46" r="4"/>
+          </g>
+          <!-- foam speckle -->
+          <g fill="currentColor" opacity=".4">
+            <circle cx="60" cy="110" r="1.4"/><circle cx="130" cy="140" r="1.2"/><circle cx="190" cy="80" r="1.3"/>
+            <circle cx="240" cy="56" r="1.1"/><circle cx="30" cy="70" r="1.2"/><circle cx="268" cy="166" r="1.3"/>
+            <circle cx="94" cy="134" r="1.1"/><circle cx="208" cy="166" r="1.2"/><circle cx="150" cy="114" r="1.2"/>
+          </g>
+          <!-- skimmer entering top right -->
+          <path d="M320 44l-44 18" stroke="currentColor" stroke-width="3" />
+          <path d="M282 56q-22 4-24 16t18 14 24-16z" fill="var(--panel)" fill-opacity=".7" stroke="currentColor" stroke-width="1.4"/>
+          <g stroke="currentColor" stroke-width=".55" opacity=".6">
+            <path d="M262 60l14 22M270 57l12 22M278 56l10 20M258 68l12 16"/>
+            <path d="M258 66l26-8M260 74l26-10M264 80l24-10"/>
+          </g>
+          <!-- steam / fog -->
+          <rect x="0" y="0" width="320" height="110" fill="url(#fadeDown)" opacity=".7"/>
+          <g stroke="currentColor" stroke-width="1.1" fill="none" opacity=".35">
+            <path d="M28 40q11-20 0-32M82 36q13-22 0-36M140 34q12-20 1-32M198 38q13-22 1-36M254 34q12-20 0-30M306 40q13-22 1-34"/>
+          </g>
+          <rect x="0" y="0" width="320" height="180" fill="url(#vig)"/>
+        </svg>
+      </div>
+      <p class="caption">Macro on the surface of the boil, 100mm. Let the glass fog and hold through it — don’t wipe, don’t cut.</p>
+    </article>
+
+    <!-- 04 ============================================================ -->
+    <article class="frame" style="animation-delay:.15s">
+      <div class="plate">
+        <span class="slug">04</span><span class="dur">5s</span>
+        <svg viewBox="0 0 320 180" role="img" aria-label="Close on an empty patterned bowl at the pass as tare is poured in from a worn ladle.">
+          <!-- stainless background -->
+          <rect x="0" y="0" width="320" height="140" fill="currentColor" opacity=".09"/>
+          <g stroke="currentColor" stroke-width=".5" opacity=".25">
+            <path d="M0 12h320M0 24h320M0 36h320M0 48h320M0 60h320M0 72h320M0 84h320M0 96h320"/>
+          </g>
+          <!-- stack of bowls, back left -->
+          <g fill="var(--panel)" stroke="currentColor" stroke-width="1">
+            <path d="M8 96q0 10 22 10t22-10z"/><path d="M8 88q0 10 22 10t22-10z"/><path d="M8 80q0 10 22 10t22-10z"/>
+            <ellipse cx="30" cy="80" rx="22" ry="5.5"/>
+          </g>
+          <!-- tare bottles, back right -->
+          <g fill="var(--panel)" stroke="currentColor" stroke-width="1">
+            <path d="M274 96V64q0-5 5-6V52h8v6q5 1 5 6v32z"/>
+            <path d="M296 96V70q0-4 4-5v-5h7v5q4 1 4 5v26z"/>
+          </g>
+          <g stroke="currentColor" stroke-width=".8" opacity=".55"><path d="M276 76h16M276 82h16M298 80h11M298 86h11"/></g>
+          <!-- folded towel -->
+          <path d="M214 96l10-10h40l-8 10z" fill="currentColor" fill-opacity=".16" stroke="currentColor" stroke-width="1"/>
+          <path d="M218 92h40" stroke="currentColor" stroke-width=".6" opacity=".5"/>
+          <!-- ladle -->
+          <path d="M198 14l64 24" stroke="currentColor" stroke-width="3.4"/>
+          <path d="M198 14l64 24" stroke="var(--panel)" stroke-width="1" opacity=".5"/>
+          <path d="M170 12q-26 7-23 25t28 16 25-23z" fill="var(--panel)" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M149 26q17 11 38 2" fill="none" stroke="currentColor" stroke-width="1" opacity=".6"/>
+          <path d="M152 32q14 9 30 1" fill="none" stroke="currentColor" stroke-width=".7" opacity=".4"/>
+          <ellipse cx="166" cy="20" rx="8" ry="4" fill="var(--panel)" opacity=".8" transform="rotate(-20 166 20)"/>
+          <!-- pour stream -->
+          <path d="M159 50q5 16 2 28t0 20" fill="none" stroke="currentColor" stroke-width="2.6"/>
+          <path d="M156 56q4 14 2 22M164 60q-3 12-2 18" fill="none" stroke="currentColor" stroke-width=".7" opacity=".4"/>
+          <g fill="currentColor" opacity=".5"><circle cx="150" cy="74" r="1.5"/><circle cx="170" cy="84" r="1.3"/><circle cx="146" cy="92" r="1.2"/></g>
+          <!-- bowl -->
+          <ellipse cx="160" cy="108" rx="78" ry="21" fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width="1.9"/>
+          <ellipse cx="160" cy="108" rx="70" ry="18" fill="var(--panel)" stroke="currentColor" stroke-width=".8"/>
+          <ellipse cx="160" cy="110" rx="58" ry="14" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-width=".7" opacity=".7"/>
+          <path d="M82 108q10 52 78 52t78-52" fill="var(--panel)" stroke="currentColor" stroke-width="1.9"/>
+          <path d="M124 160h72" stroke="currentColor" stroke-width="1.7"/>
+          <!-- rim pattern -->
+          <g stroke="currentColor" stroke-width="1" fill="none" opacity=".75">
+            <path d="M92 122h8v7h-8v-7M104 126h8v7h-8v-7M116 129h8v7h-8v-7M128 131h8v7h-8v-7M140 132h8v7h-8v-7M152 133h8v7h-8v-7M164 133h8v7h-8v-7M176 132h8v7h-8v-7M188 131h8v7h-8v-7M200 129h8v7h-8v-7M212 126h8v7h-8v-7"/>
+          </g>
+          <!-- body shading -->
+          <path d="M82 108q10 52 78 52c-30 0-52-22-60-52z" fill="currentColor" opacity=".12"/>
+          <!-- ripple -->
+          <ellipse cx="160" cy="112" rx="18" ry="5" fill="none" stroke="currentColor" stroke-width="1.1" opacity=".7"/>
+          <ellipse cx="160" cy="113" rx="31" ry="8" fill="none" stroke="currentColor" stroke-width=".8" opacity=".45"/>
+          <ellipse cx="160" cy="114" rx="44" ry="11" fill="none" stroke="currentColor" stroke-width=".6" opacity=".3"/>
+          <!-- counter -->
+          <line x1="0" y1="140" x2="320" y2="140" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="0" y="140" width="320" height="40" fill="currentColor" opacity=".14"/>
+          <g stroke="currentColor" stroke-width=".5" opacity=".3"><path d="M0 150h320M0 160h320M0 170h320"/></g>
+          <rect x="0" y="0" width="320" height="180" fill="url(#vig)"/>
+        </svg>
+      </div>
+      <p class="caption">Close on an empty bowl at the pass. The tare goes in first, alone — hold on the ripple before anything else lands.</p>
+    </article>
+
+    <!-- 05 ============================================================ -->
+    <article class="frame" style="animation-delay:.20s">
+      <div class="plate">
+        <span class="slug">05</span><span class="dur">6s</span>
+        <svg viewBox="0 0 320 180" role="img" aria-label="Hands cutting folded noodle dough with a long knife, flour hanging in hard backlight.">
+          <rect x="0" y="0" width="320" height="180" fill="currentColor" opacity=".16"/>
+          <!-- backlight -->
+          <path d="M158 -24l-150 150h300z" fill="var(--panel)" opacity=".55"/>
+          <path d="M158 -24l-96 150h192z" fill="var(--panel)" opacity=".4"/>
+          <g stroke="var(--panel)" stroke-width="1.6" opacity=".45">
+            <path d="M158 -10L54 126M158 -10L96 126M158 -10v136M158 -10l62 136M158 -10l104 136"/>
+          </g>
+          <!-- flour dredge, left -->
+          <g fill="var(--panel)" stroke="currentColor" stroke-width="1">
+            <path d="M6 84V60h22v24z"/><ellipse cx="17" cy="60" rx="11" ry="3.4"/>
+          </g>
+          <g fill="currentColor" opacity=".3"><circle cx="12" cy="58" r=".9"/><circle cx="17" cy="57" r=".9"/><circle cx="22" cy="58" r=".9"/></g>
+          <!-- portioned noodle box, right -->
+          <g fill="var(--panel)" stroke="currentColor" stroke-width="1">
+            <path d="M268 84l8-14h42l-8 14z"/><path d="M268 84v10h42V84"/>
+          </g>
+          <g stroke="currentColor" stroke-width=".8" opacity=".6">
+            <path d="M276 78q6-4 12 0t12 0M276 82q6-4 12 0t12 0"/>
+          </g>
+          <!-- dough slab -->
+          <path d="M30 128l22-48h216l22 48z" fill="var(--panel)" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M30 128l22-48h40l-30 48z" fill="currentColor" opacity=".08"/>
+          <!-- folded layers at the near edge -->
+          <g stroke="currentColor" stroke-width=".8" opacity=".6">
+            <path d="M34 124h252M38 120h244M42 116h236"/>
+          </g>
+          <!-- cut lines -->
+          <g stroke="currentColor" stroke-width=".9" opacity=".7">
+            <path d="M66 80l-14 48M82 80l-11 48M98 80l-8 48M114 80l-5 48M130 80l-2 48M146 80l1 48M162 80l4 48M178 80l7 48M194 80l10 48M210 80l13 48M226 80l16 48"/>
+          </g>
+          <!-- cut noodles falling right -->
+          <g stroke="currentColor" stroke-width="1" fill="none" opacity=".85">
+            <path d="M242 82q10 16 4 30t6 16M250 82q9 18 2 30t8 14M258 82q10 16 3 30t7 16"/>
+          </g>
+          <!-- knife -->
+          <path d="M84 64h152v14H84z" fill="var(--panel)" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M86 68h148" stroke="currentColor" stroke-width=".7" opacity=".45"/>
+          <path d="M84 78h152" stroke="currentColor" stroke-width="2"/>
+          <path d="M236 64h40v12h-40z" fill="currentColor" fill-opacity=".3" stroke="currentColor" stroke-width="1.5"/>
+          <g fill="currentColor" opacity=".55"><circle cx="246" cy="70" r="1.6"/><circle cx="258" cy="70" r="1.6"/><circle cx="270" cy="70" r="1.6"/></g>
+          <!-- hands -->
+          <path d="M88 64q-16-5-21-18t9-19 24 9l8 15" fill="var(--panel)" stroke="currentColor" stroke-width="1.4"/>
+          <g stroke="currentColor" stroke-width=".7" opacity=".5"><path d="M76 38q6 3 9 9M84 32q6 4 9 10M92 29q5 4 8 10"/></g>
+          <path d="M222 62q20-7 26-21t-12-19-24 12" fill="var(--panel)" stroke="currentColor" stroke-width="1.4"/>
+          <g stroke="currentColor" stroke-width=".7" opacity=".5"><path d="M228 54q6-4 8-10M236 50q6-4 8-10M220 56q5-4 7-10"/></g>
+          <path d="M70 28l-10-8M242 24l12-8" stroke="currentColor" stroke-width="1.1" opacity=".55"/>
+          <!-- flour in the air -->
+          <g fill="currentColor" opacity=".5">
+            <circle cx="48" cy="46" r="1.7"/><circle cx="74" cy="22" r="1.2"/><circle cx="112" cy="40" r="1.9"/>
+            <circle cx="140" cy="18" r="1.3"/><circle cx="188" cy="36" r="1.7"/><circle cx="222" cy="20" r="1.2"/>
+            <circle cx="262" cy="46" r="1.8"/><circle cx="292" cy="26" r="1.1"/><circle cx="30" cy="68" r="1.4"/>
+            <circle cx="296" cy="70" r="1.5"/><circle cx="160" cy="50" r="1.1"/><circle cx="100" cy="58" r="1.2"/>
+            <circle cx="204" cy="56" r="1.3"/><circle cx="130" cy="62" r="1"/><circle cx="56" cy="14" r="1"/>
+            <circle cx="248" cy="10" r="1.1"/><circle cx="174" cy="10" r="1"/>
+          </g>
+          <!-- bench -->
+          <line x1="0" y1="128" x2="320" y2="128" stroke="currentColor" stroke-width="1.7"/>
+          <rect x="0" y="128" width="320" height="52" fill="currentColor" opacity=".2"/>
+          <rect x="0" y="128" width="320" height="52" fill="url(#grain)"/>
+          <g stroke="currentColor" stroke-width=".5" opacity=".3"><path d="M0 142h320M0 156h320M0 170h320"/></g>
+          <!-- flour dusting on bench -->
+          <g fill="var(--panel)" opacity=".5"><ellipse cx="70" cy="146" rx="30" ry="6"/><ellipse cx="238" cy="152" rx="36" ry="7"/></g>
+          <rect x="0" y="0" width="320" height="180" fill="url(#vig)"/>
+        </svg>
+      </div>
+      <p class="caption">Hands cutting noodle dough in the noodle room, hard backlight so the flour reads in the air. Cut his answer to the rhythm of the blade, not the other way round.</p>
+    </article>
+
+    <!-- 06 ============================================================ -->
+    <article class="frame" style="animation-delay:.25s">
+      <div class="plate">
+        <span class="slug">06</span><span class="dur">6s</span>
+        <svg viewBox="0 0 320 180" role="img" aria-label="Hard-lit insert: a blowtorch run across a slice of rolled chashu, a halved soft egg beside it.">
+          <rect x="0" y="0" width="320" height="180" fill="currentColor" opacity=".2"/>
+          <rect x="0" y="0" width="320" height="104" fill="url(#hatchFine)" opacity=".7"/>
+          <!-- board -->
+          <path d="M14 104h292v52H14z" fill="var(--panel)" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M14 104l18-20h256l18 20" fill="var(--panel)" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M14 104l18-20h40l-26 20z" fill="currentColor" opacity=".08"/>
+          <g stroke="currentColor" stroke-width=".5" opacity=".35"><path d="M20 116h280M20 128h280M20 140h280M20 150h280"/></g>
+          <rect x="14" y="104" width="292" height="52" fill="url(#grain)"/>
+          <!-- tongs resting, back left -->
+          <path d="M20 84q24-10 44-4M20 88q24-8 44-2" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M64 80l10 3" stroke="currentColor" stroke-width="1.6"/>
+          <!-- chashu slice -->
+          <ellipse cx="118" cy="96" rx="52" ry="18" fill="var(--panel)" stroke="currentColor" stroke-width="1.7"/>
+          <ellipse cx="118" cy="96" rx="52" ry="18" fill="url(#hatch)" opacity=".45"/>
+          <ellipse cx="118" cy="96" rx="38" ry="12" fill="none" stroke="currentColor" stroke-width=".9" opacity=".6"/>
+          <ellipse cx="118" cy="96" rx="22" ry="7" fill="currentColor" fill-opacity=".22" stroke="currentColor" stroke-width=".8"/>
+          <!-- fat cap + grain -->
+          <path d="M70 92q20-10 48-9t48 9" fill="none" stroke="currentColor" stroke-width="1.1" opacity=".7"/>
+          <path d="M80 100q18 7 38 6t40-7" fill="none" stroke="currentColor" stroke-width=".7" opacity=".5"/>
+          <!-- char striping from the torch -->
+          <g stroke="currentColor" stroke-width="1.4" opacity=".55">
+            <path d="M92 90q6 8 2 13M108 88q6 9 2 14M124 88q6 9 2 14M140 90q6 8 2 13"/>
+          </g>
+          <!-- rendered fat drops -->
+          <g fill="currentColor" opacity=".4"><circle cx="76" cy="110" r="1.6"/><circle cx="158" cy="112" r="1.4"/><circle cx="118" cy="116" r="1.2"/></g>
+          <!-- egg -->
+          <path d="M240 98q-20 0-20-12t20-17 20 17-20 12z" fill="var(--panel)" stroke="currentColor" stroke-width="1.6"/>
+          <ellipse cx="240" cy="82" rx="9.5" ry="8" fill="currentColor" fill-opacity=".3" stroke="currentColor" stroke-width="1.3"/>
+          <ellipse cx="237" cy="79" rx="3" ry="2.4" fill="var(--panel)" opacity=".75"/>
+          <path d="M224 90q16 6 32 0" fill="none" stroke="currentColor" stroke-width=".7" opacity=".5"/>
+          <!-- second half behind -->
+          <path d="M268 96q-16 0-16-10t16-14 16 14-16 10z" fill="var(--panel)" stroke="currentColor" stroke-width="1.3" opacity=".8"/>
+          <ellipse cx="268" cy="83" rx="7" ry="6" fill="currentColor" fill-opacity=".25" stroke="currentColor" stroke-width="1" opacity=".8"/>
+          <!-- small knife -->
+          <path d="M196 104l44-10 2 5-44 10z" fill="var(--panel)" stroke="currentColor" stroke-width="1.1"/>
+          <!-- torch -->
+          <path d="M288 16h26v34h-26z" fill="currentColor" fill-opacity=".22" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M288 20h-6v10h6M292 50v10h18V50" fill="var(--panel)" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M282 24h-20v8h20" fill="var(--panel)" stroke="currentColor" stroke-width="1.4"/>
+          <g stroke="currentColor" stroke-width=".7" opacity=".5"><path d="M294 24h14M294 30h14M294 36h14"/></g>
+          <!-- flame, layered -->
+          <path d="M262 28q-46-18-84 0 38 18 84 0z" fill="var(--panel)" fill-opacity=".6" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M254 28q-34-13-62 0 28 13 62 0z" fill="none" stroke="currentColor" stroke-width="1" opacity=".65"/>
+          <path d="M244 28q-22-8-40 0 18 8 40 0z" fill="currentColor" fill-opacity=".2" stroke="currentColor" stroke-width=".8" opacity=".6"/>
+          <path d="M178 28q-36 14-62 44" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/>
+          <path d="M186 36q-30 16-50 40" fill="none" stroke="currentColor" stroke-width=".8" opacity=".3"/>
+          <!-- heat shimmer -->
+          <g stroke="currentColor" stroke-width="1" fill="none" opacity=".4">
+            <path d="M92 76q-7-14 2-22M126 72q-7-14 3-24M160 78q-7-12 2-20M60 82q-6-12 2-18"/>
+          </g>
+          <rect x="0" y="0" width="320" height="180" fill="url(#vig)"/>
+        </svg>
+      </div>
+      <p class="caption">Two hard-lit inserts cut together at the pass — a torch run across the chashu, then the egg opened.</p>
+    </article>
+
+    <!-- 07 ============================================================ -->
+    <article class="frame" style="animation-delay:.30s">
+      <div class="plate">
+        <span class="slug">07</span><span class="dur">8s</span>
+        <svg viewBox="0 0 320 180" role="img" aria-label="Overhead: the finished bowl built in one take — noodle nest, chashu, egg, nori, menma, scallion — with hands entering from both sides.">
+          <rect x="0" y="0" width="320" height="180" fill="currentColor" opacity=".16"/>
+          <g stroke="currentColor" stroke-width=".5" opacity=".22">
+            <path d="M0 16h320M0 34h320M0 52h320M0 70h320M0 88h320M0 106h320M0 124h320M0 142h320M0 160h320"/>
+          </g>
+          <!-- tray edge -->
+          <path d="M0 150h320" stroke="currentColor" stroke-width="1.2" opacity=".5"/>
+          <!-- bowl -->
+          <circle cx="158" cy="88" r="78" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-width="1.9"/>
+          <circle cx="158" cy="88" r="70" fill="var(--panel)" stroke="currentColor" stroke-width="1"/>
+          <!-- rim pattern ring -->
+          <g stroke="currentColor" stroke-width=".9" fill="none" opacity=".6">
+            <circle cx="158" cy="88" r="74" stroke-dasharray="7 5"/>
+          </g>
+          <!-- broth -->
+          <circle cx="158" cy="88" r="64" fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width=".8"/>
+          <g fill="none" stroke="currentColor" stroke-width=".8" opacity=".5">
+            <circle cx="112" cy="124" r="5"/><circle cx="122" cy="132" r="3.4"/><circle cx="196" cy="128" r="4.4"/>
+            <circle cx="206" cy="118" r="3"/><circle cx="104" cy="66" r="3.6"/><circle cx="212" cy="62" r="4"/>
+            <circle cx="158" cy="146" r="4.6"/><circle cx="144" cy="140" r="2.8"/>
+          </g>
+          <!-- noodle nest -->
+          <g fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M158 40q-36 2-40 24t28 24 34-16-20-18-14 14 12 12"/>
+            <path d="M150 44q-30 6-32 24t26 20"/>
+            <path d="M166 42q28 6 30 22t-24 20"/>
+            <path d="M138 56q-14 10-12 22t20 14"/>
+            <path d="M178 56q14 10 12 22t-20 14"/>
+          </g>
+          <g fill="none" stroke="currentColor" stroke-width=".7" opacity=".6">
+            <path d="M144 48q-24 8-24 24M172 48q24 8 24 24M152 94q14 6 26 0"/>
+          </g>
+          <!-- chashu, two slices -->
+          <g transform="rotate(-18 202 66)">
+            <ellipse cx="202" cy="66" rx="25" ry="15" fill="var(--panel)" stroke="currentColor" stroke-width="1.4"/>
+            <ellipse cx="202" cy="66" rx="25" ry="15" fill="url(#hatch)" opacity=".4"/>
+            <ellipse cx="202" cy="66" rx="14" ry="8" fill="none" stroke="currentColor" stroke-width=".8" opacity=".6"/>
+            <ellipse cx="202" cy="66" rx="6" ry="3.4" fill="currentColor" fill-opacity=".25"/>
+          </g>
+          <g transform="rotate(10 214 92)">
+            <ellipse cx="214" cy="92" rx="22" ry="13" fill="var(--panel)" stroke="currentColor" stroke-width="1.3"/>
+            <ellipse cx="214" cy="92" rx="12" ry="7" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/>
+          </g>
+          <!-- egg halves -->
+          <path d="M106 130a17 12 0 0134 0z" fill="var(--panel)" stroke="currentColor" stroke-width="1.4"/>
+          <ellipse cx="123" cy="126" rx="7" ry="5.4" fill="currentColor" fill-opacity=".3" stroke="currentColor" stroke-width="1"/>
+          <ellipse cx="121" cy="124" rx="2.2" ry="1.7" fill="var(--panel)" opacity=".7"/>
+          <path d="M104 104a14 10 0 0128 0z" fill="var(--panel)" stroke="currentColor" stroke-width="1.2" opacity=".9"/>
+          <ellipse cx="118" cy="101" rx="5.6" ry="4.3" fill="currentColor" fill-opacity=".26" stroke="currentColor" stroke-width=".9"/>
+          <!-- nori -->
+          <path d="M190 112l26 7-10 36-26-7z" fill="var(--panel)" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M190 112l26 7-10 36-26-7z" fill="url(#hatch)" opacity=".7"/>
+          <g stroke="currentColor" stroke-width=".5" opacity=".45"><path d="M192 120l24 7M190 128l24 7M188 136l24 7"/></g>
+          <!-- menma -->
+          <g fill="var(--panel)" stroke="currentColor" stroke-width="1">
+            <path d="M92 86l22-6 2 5-22 6z"/><path d="M90 94l22-6 2 5-22 6z"/><path d="M94 78l20-6 2 5-20 6z"/>
+          </g>
+          <!-- narutomaki -->
+          <circle cx="158" cy="38" r="11" fill="var(--panel)" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M158 38q0-7 6-5t2 9-11 2-3-13 15-3" fill="none" stroke="currentColor" stroke-width="1"/>
+          <!-- scallion -->
+          <g fill="var(--panel)" stroke="currentColor" stroke-width=".9">
+            <circle cx="140" cy="62" r="3"/><circle cx="172" cy="56" r="2.6"/><circle cx="182" cy="104" r="2.8"/>
+            <circle cx="150" cy="118" r="2.5"/><circle cx="126" cy="88" r="2.9"/><circle cx="134" cy="74" r="2.4"/>
+            <circle cx="166" cy="120" r="2.6"/><circle cx="190" cy="82" r="2.4"/>
+          </g>
+          <!-- hands -->
+          <path d="M0 160q28-12 48-32t32-14" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M48 128q-14-11-7-23t23-2l16 16" fill="var(--panel)" stroke="currentColor" stroke-width="1.4"/>
+          <g stroke="currentColor" stroke-width=".7" opacity=".5"><path d="M52 112q6 2 10 6M58 106q6 2 10 6"/></g>
+          <path d="M320 26q-30 5-52 20" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M274 46q-12 11-3 20t23 1" fill="var(--panel)" stroke="currentColor" stroke-width="1.4"/>
+          <g stroke="currentColor" stroke-width=".7" opacity=".5"><path d="M282 52q4 5 10 7M288 46q4 5 10 7"/></g>
+          <!-- chopsticks in the right hand -->
+          <path d="M268 50l-52 16M270 56l-50 16" stroke="currentColor" stroke-width="1.8"/>
+          <rect x="0" y="0" width="320" height="180" fill="url(#vig)"/>
+        </svg>
+      </div>
+      <p class="caption">Overhead rig on the pass: the whole bowl built in one unbroken take, hands entering from both sides. No cuts inside the frame.</p>
+    </article>
+
+    <!-- 08 ============================================================ -->
+    <article class="frame" style="animation-delay:.35s">
+      <div class="plate">
+        <span class="slug">08</span><span class="dur">5s</span>
+        <svg viewBox="0 0 320 180" role="img" aria-label="Over the chef's shoulder as the bowl lands at the counter and steam reaches a guest in glasses.">
+          <rect x="0" y="0" width="320" height="180" fill="currentColor" opacity=".1"/>
+          <!-- back wall + menu board, soft -->
+          <rect x="0" y="0" width="320" height="96" fill="url(#hatchFine)" opacity=".5"/>
+          <g fill="var(--panel)" stroke="currentColor" stroke-width=".9" opacity=".75">
+            <rect x="252" y="12" width="13" height="40"/><rect x="270" y="12" width="13" height="46"/><rect x="288" y="12" width="13" height="38"/>
+          </g>
+          <g stroke="currentColor" stroke-width=".6" opacity=".4">
+            <path d="M256 20h5M256 26h5M256 32h5M274 20h5M274 26h5M274 32h5M274 38h5M292 20h5M292 26h5"/>
+          </g>
+          <!-- bokeh -->
+          <g fill="var(--panel)" opacity=".4"><circle cx="34" cy="26" r="11"/><circle cx="62" cy="14" r="8"/><circle cx="18" cy="52" r="7"/></g>
+          <g fill="none" stroke="currentColor" stroke-width=".7" opacity=".3"><circle cx="34" cy="26" r="11"/><circle cx="62" cy="14" r="8"/><circle cx="18" cy="52" r="7"/></g>
+          <!-- guest -->
+          <path d="M186 70a26 28 0 1152 0 26 28 0 01-52 0z" fill="var(--panel)" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M186 62q4-24 26-24t26 24q-6-12-26-12t-26 12z" fill="currentColor" fill-opacity=".4" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M166 132q2-34 46-34t46 34" fill="var(--panel)" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M202 94v6M222 94v6" stroke="currentColor" stroke-width=".9"/>
+          <!-- fogged glasses -->
+          <g stroke="currentColor" stroke-width="1.3" fill="var(--panel)" fill-opacity=".85">
+            <rect x="193" y="62" width="19" height="14" rx="3"/><rect x="216" y="62" width="19" height="14" rx="3"/>
+          </g>
+          <path d="M212 68h4M193 66l-8-3M235 66l8-3" stroke="currentColor" stroke-width="1.1"/>
+          <g stroke="currentColor" stroke-width=".6" opacity=".45"><path d="M196 72q7-5 13-2M219 72q7-5 13-2"/></g>
+          <path d="M206 86q8 5 14 0" fill="none" stroke="currentColor" stroke-width="1" opacity=".6"/>
+          <!-- steam between -->
+          <rect x="96" y="40" width="150" height="88" fill="url(#steamUp)"/>
+          <g stroke="currentColor" stroke-width="1.2" fill="none" opacity=".5">
+            <path d="M136 118q-12-28 4-44t2-30M166 116q-11-26 4-42t0-28M196 118q-10-24 4-36t1-22M116 120q-9-22 3-34"/>
+          </g>
+          <!-- counter -->
+          <rect x="0" y="128" width="320" height="6" fill="currentColor" opacity=".3"/>
+          <line x1="0" y1="128" x2="320" y2="128" stroke="currentColor" stroke-width="1.8"/>
+          <rect x="0" y="134" width="320" height="46" fill="currentColor" opacity=".2"/>
+          <rect x="0" y="134" width="320" height="46" fill="url(#grain)"/>
+          <g stroke="currentColor" stroke-width=".5" opacity=".3"><path d="M0 146h320M0 158h320M0 170h320"/></g>
+          <!-- chopstick rest + sticks -->
+          <path d="M236 128l24-6 1 4-24 6z" fill="var(--panel)" stroke="currentColor" stroke-width="1"/>
+          <path d="M240 122q4-4 8 0" fill="none" stroke="currentColor" stroke-width="1.1"/>
+          <!-- bowl sliding -->
+          <ellipse cx="140" cy="124" rx="50" ry="14" fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width="1.7"/>
+          <ellipse cx="140" cy="124" rx="42" ry="11" fill="var(--panel)" stroke="currentColor" stroke-width=".8"/>
+          <ellipse cx="140" cy="126" rx="34" ry="8" fill="currentColor" fill-opacity=".16"/>
+          <path d="M90 124q6 32 50 32t50-32" fill="var(--panel)" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M90 124q6 32 50 32c-20 0-36-13-42-32z" fill="currentColor" opacity=".12"/>
+          <g stroke="currentColor" stroke-width=".9" fill="none" opacity=".65">
+            <path d="M100 138h6v5h-6v-5M112 142h6v5h-6v-5M124 145h6v5h-6v-5M138 146h6v5h-6v-5M152 145h6v5h-6v-5M164 142h6v5h-6v-5M176 138h6v5h-6v-5"/>
+          </g>
+          <!-- motion streaks -->
+          <g stroke="currentColor" stroke-width="1" fill="none" opacity=".35"><path d="M196 120q18-3 30-8M198 130q20 0 34-5M194 138q16 1 28-3"/></g>
+          <!-- foreground shoulder -->
+          <path d="M-14 180q0-58 58-66t66 66z" fill="currentColor" opacity=".45"/>
+          <path d="M-14 180q0-58 58-66t66 66" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".5"/>
+          <path d="M22 122q22-8 42 2" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".4"/>
+          <rect x="0" y="0" width="320" height="180" fill="url(#vig)"/>
+        </svg>
+      </div>
+      <p class="caption">Over the chef’s shoulder with a soft foreground as the bowl lands at seat 3 — the steam reaches the guest before the bowl does.</p>
+    </article>
+
+    <!-- 09 ============================================================ -->
+    <article class="frame" style="animation-delay:.40s">
+      <div class="plate">
+        <span class="slug">09</span><span class="dur">7s</span>
+        <svg viewBox="0 0 320 180" role="img" aria-label="Static final shot after close: an empty bowl with chopsticks laid across it, a glass and crumpled napkin, a hand reaching in.">
+          <!-- dim room -->
+          <rect x="0" y="0" width="320" height="104" fill="currentColor" opacity=".3"/>
+          <rect x="0" y="0" width="320" height="104" fill="url(#hatchFine)" opacity=".5"/>
+          <!-- far stool backs, barely there -->
+          <g fill="none" stroke="currentColor" stroke-width="1" opacity=".35">
+            <path d="M26 104V84M46 104V84M26 88h20"/><path d="M276 104V86M294 104V86M276 90h18"/>
+          </g>
+          <line x1="0" y1="104" x2="320" y2="104" stroke="currentColor" stroke-width="1.6"/>
+          <!-- counter -->
+          <rect x="0" y="104" width="320" height="76" fill="currentColor" opacity=".17"/>
+          <rect x="0" y="104" width="320" height="76" fill="url(#grain)"/>
+          <g stroke="currentColor" stroke-width=".5" opacity=".3"><path d="M0 118h320M0 134h320M0 150h320M0 166h320"/></g>
+          <!-- stacked empty bowls, back right -->
+          <g fill="var(--panel)" stroke="currentColor" stroke-width="1">
+            <path d="M242 102q0 11 24 11t24-11z"/><path d="M242 93q0 11 24 11t24-11z"/>
+            <ellipse cx="266" cy="93" rx="24" ry="6"/>
+          </g>
+          <!-- water glass -->
+          <path d="M36 102l4 36q0 5 9 5t9-5l4-36z" fill="var(--panel)" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M40 120q9 3 18 0l-2 18q0 4-7 4t-7-4z" fill="currentColor" opacity=".16"/>
+          <g fill="currentColor" opacity=".35"><circle cx="43" cy="112" r="1"/><circle cx="54" cy="116" r=".9"/><circle cx="47" cy="126" r=".9"/><circle cx="52" cy="132" r="1"/></g>
+          <!-- crumpled napkin -->
+          <path d="M78 146q-8-8 0-14t18-2 10 10-12 10-16-4z" fill="var(--panel)" stroke="currentColor" stroke-width="1.1"/>
+          <g stroke="currentColor" stroke-width=".7" opacity=".5"><path d="M84 136q6 6 4 12M94 132q-2 8 4 12M88 142q6-2 10 2"/></g>
+          <!-- bowl -->
+          <ellipse cx="164" cy="100" rx="70" ry="19" fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width="1.9"/>
+          <ellipse cx="164" cy="100" rx="62" ry="16" fill="var(--panel)" stroke="currentColor" stroke-width=".9"/>
+          <ellipse cx="164" cy="103" rx="48" ry="12" fill="currentColor" fill-opacity=".2" stroke="currentColor" stroke-width=".8" opacity=".7"/>
+          <ellipse cx="164" cy="105" rx="26" ry="6" fill="currentColor" fill-opacity=".3"/>
+          <g fill="currentColor" opacity=".45"><circle cx="152" cy="104" r="1.5"/><circle cx="176" cy="106" r="1.3"/><circle cx="166" cy="109" r="1.1"/></g>
+          <path d="M94 100q8 48 70 48t70-48" fill="var(--panel)" stroke="currentColor" stroke-width="1.9"/>
+          <path d="M94 100q8 48 70 48c-28 0-48-20-56-48z" fill="currentColor" opacity=".13"/>
+          <path d="M128 148h72" stroke="currentColor" stroke-width="1.7"/>
+          <g stroke="currentColor" stroke-width=".9" fill="none" opacity=".6">
+            <path d="M104 114h7v6h-7v-6M116 120h7v6h-7v-6M129 124h7v6h-7v-6M143 126h7v6h-7v-6M157 127h7v6h-7v-6M171 127h7v6h-7v-6M185 125h7v6h-7v-6M198 121h7v6h-7v-6M210 115h7v6h-7v-6"/>
+          </g>
+          <!-- chopsticks across the rim -->
+          <path d="M86 86l164 26" stroke="currentColor" stroke-width="2.6"/>
+          <path d="M88 94l164 26" stroke="currentColor" stroke-width="2.6"/>
+          <path d="M86 86l164 26" stroke="var(--panel)" stroke-width=".7" opacity=".4"/>
+          <path d="M88 94l164 26" stroke="var(--panel)" stroke-width=".7" opacity=".4"/>
+          <!-- hand reaching from frame right -->
+          <path d="M320 44q-34 6-54 24" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M268 72q-14 12-5 22t24 3" fill="var(--panel)" stroke="currentColor" stroke-width="1.4"/>
+          <g stroke="currentColor" stroke-width=".7" opacity=".5"><path d="M274 80q5 5 11 7M280 74q5 5 11 7M270 88q5 4 11 6"/></g>
+          <rect x="0" y="0" width="320" height="180" fill="url(#vig)"/>
+        </svg>
+      </div>
+      <p class="caption">Static, no camera move — the empty bowl on the counter at 22:40, chopsticks laid across it. Hold two beats after the hand leaves frame, then cut to black.</p>
+    </article>
+
+  </main>
+
+  <section class="sheets">
+
+    <div class="sheet">
+      <h2>The prompts</h2>
+      <div class="prompts">
+        <p class="prompt-card">A bowl of ramen, for me, is…<small>Opens the film · frame 01</small></p>
+        <p class="prompt-card">The best part of a ramen is…<small>Second half · frames 06–08</small></p>
+      </div>
+      <p class="statement-note">These go on screen as white type over the first frame — three seconds, no voice, nobody reads them aloud. Everything after is him finishing the sentence. A half-sentence gets an honest answer where a question gets a speech. Ask, then stay quiet; the second thing he says is the one you’ll use.</p>
+    </div>
+
+    <div class="sheet">
+      <h2>Alternate questions</h2>
+      <ul class="qs">
+        <li><span>Finish this sentence: a bowl of ramen is…</span><span class="buys">01 · 09</span></li>
+        <li><span>And this one: the best part of a ramen is…</span><span class="buys">06 · 08</span></li>
+        <li><span>What do people get wrong about ramen?</span><span class="buys">01</span></li>
+        <li><span>Which part can’t be rushed?</span><span class="buys">02 · 03</span></li>
+        <li><span>What’s in the bowl that nobody notices?</span><span class="buys">04 · 06</span></li>
+        <li><span>What’s still hard, after all this time?</span><span class="buys">05</span></li>
+        <li><span>What do you want someone to feel in the first mouthful?</span><span class="buys">08</span></li>
+        <li><span>How do you know a bowl was good?</span><span class="buys">09</span></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <footer>
+    <span>Manpuku Mascot · Storyboard v1 · 9 frames</span>
+    <span>Frames are blocking references, not final framing</span>
+  </footer>
+</div>
