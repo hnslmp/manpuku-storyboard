@@ -110,15 +110,7 @@
     grid-template-columns:repeat(auto-fill,minmax(var(--frame-w),1fr));
     gap:clamp(22px,3vw,36px) clamp(18px,2.4vw,30px);
   }
-  .frame{
-    display:flex;flex-direction:column;
-    opacity:0;
-    animation:rise .55s cubic-bezier(.2,.7,.3,1) forwards;
-  }
-  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion:reduce){
-    .frame{animation:none;opacity:1}
-  }
+  .frame{display:flex;flex-direction:column}
 
   .plate{
     position:relative;
@@ -211,6 +203,39 @@
     text-transform:uppercase;color:var(--ink-3);
     display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between;
   }
+
+  /* ---------- print / PDF ---------- */
+  @media print{
+    @page{size:A4 landscape;margin:11mm}
+    :root{
+      --ground:#FFFFFF;--surface:#FFFFFF;--panel:#FFFFFF;
+      --ink:#000000;--ink-2:#22282C;--ink-3:#565E64;
+      --rule:#B6B8B3;--rule-strong:#8A8D88;
+      --accent:#13384D;--accent-soft:rgba(19,56,77,.12);
+      --sketch:#1A2024;
+    }
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    body{background:#FFFFFF}
+    .wrap{max-width:none;padding:0}
+    .slate{padding-bottom:5mm;border-bottom-width:1pt}
+    .eyebrow{font-size:7pt;margin-bottom:3mm}
+    .title{font-size:21pt}
+    .title .quiet{font-size:8pt;margin-top:3mm}
+    .board{grid-template-columns:repeat(3,1fr);gap:7mm 5mm;margin-top:7mm}
+    .frame{break-inside:avoid}
+    .plate{border-width:1pt}
+    .slug,.dur{font-size:6.5pt}
+    .caption{font-size:7.6pt;line-height:1.4;padding-top:2.5mm}
+    .sheets{break-before:page;grid-template-columns:1fr 1fr;gap:8mm;margin-top:0}
+    .sheet{break-inside:avoid;border-width:.75pt;padding:7mm}
+    .sheet h2{font-size:7pt;margin-bottom:5mm}
+    .prompt-card{font-size:14pt;border-width:1pt;padding:5mm}
+    .prompt-card small{font-size:6pt}
+    .statement-note{font-size:8.5pt}
+    .qs li{font-size:9pt;padding-bottom:3mm}
+    .qs .buys{font-size:6.5pt}
+    footer{break-inside:avoid;margin-top:7mm;font-size:6.5pt}
+  }
 </style>
 </head>
 <body>
@@ -255,7 +280,7 @@
   <main class="board">
 
     <!-- 01 ============================================================ -->
-    <article class="frame" style="animation-delay:.00s">
+    <article class="frame">
       <div class="plate">
         <span class="slug">01</span><span class="dur">6s</span>
         <svg viewBox="0 0 320 180" role="img" aria-label="Wide interior: the chef alone behind the counter at 04:15, half the lights on, menu strips and bottles on the back wall.">
@@ -366,7 +391,7 @@
     </article>
 
     <!-- 02 ============================================================ -->
-    <article class="frame" style="animation-delay:.05s">
+    <article class="frame">
       <div class="plate">
         <span class="slug">02</span><span class="dur">5s</span>
         <svg viewBox="0 0 320 180" role="img" aria-label="Low angle in the back kitchen: hands lowering pork bones into a tall stockpot over a lit burner.">
@@ -433,7 +458,7 @@
     </article>
 
     <!-- 03 ============================================================ -->
-    <article class="frame" style="animation-delay:.10s">
+    <article class="frame">
       <div class="plate">
         <span class="slug">03</span><span class="dur">7s</span>
         <svg viewBox="0 0 320 180" role="img" aria-label="Macro on the surface of the broth at a rolling boil, lens fogging, a skimmer entering frame.">
@@ -499,7 +524,7 @@
     </article>
 
     <!-- 04 ============================================================ -->
-    <article class="frame" style="animation-delay:.15s">
+    <article class="frame">
       <div class="plate">
         <span class="slug">04</span><span class="dur">5s</span>
         <svg viewBox="0 0 320 180" role="img" aria-label="Close on an empty patterned bowl at the pass as tare is poured in from a worn ladle.">
@@ -560,7 +585,7 @@
     </article>
 
     <!-- 05 ============================================================ -->
-    <article class="frame" style="animation-delay:.20s">
+    <article class="frame">
       <div class="plate">
         <span class="slug">05</span><span class="dur">6s</span>
         <svg viewBox="0 0 320 180" role="img" aria-label="Hands cutting folded noodle dough with a long knife, flour hanging in hard backlight.">
@@ -633,7 +658,7 @@
     </article>
 
     <!-- 06 ============================================================ -->
-    <article class="frame" style="animation-delay:.25s">
+    <article class="frame">
       <div class="plate">
         <span class="slug">06</span><span class="dur">6s</span>
         <svg viewBox="0 0 320 180" role="img" aria-label="Hard-lit insert: a blowtorch run across a slice of rolled chashu, a halved soft egg beside it.">
@@ -694,7 +719,7 @@
     </article>
 
     <!-- 07 ============================================================ -->
-    <article class="frame" style="animation-delay:.30s">
+    <article class="frame">
       <div class="plate">
         <span class="slug">07</span><span class="dur">8s</span>
         <svg viewBox="0 0 320 180" role="img" aria-label="Overhead: the finished bowl built in one take — noodle nest, chashu, egg, nori, menma, scallion — with hands entering from both sides.">
@@ -779,7 +804,7 @@
     </article>
 
     <!-- 08 ============================================================ -->
-    <article class="frame" style="animation-delay:.35s">
+    <article class="frame">
       <div class="plate">
         <span class="slug">08</span><span class="dur">5s</span>
         <svg viewBox="0 0 320 180" role="img" aria-label="Over the chef's shoulder as the bowl lands at the counter and steam reaches a guest in glasses.">
@@ -843,7 +868,7 @@
     </article>
 
     <!-- 09 ============================================================ -->
-    <article class="frame" style="animation-delay:.40s">
+    <article class="frame">
       <div class="plate">
         <span class="slug">09</span><span class="dur">7s</span>
         <svg viewBox="0 0 320 180" role="img" aria-label="Static final shot after close: an empty bowl with chopsticks laid across it, a glass and crumpled napkin, a hand reaching in.">
