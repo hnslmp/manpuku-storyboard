@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Storyboard for a prompt-led short film at Manpuku Mascot.">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%8D%9C</text></svg>">
 <title>“A bowl of ramen, for me, is…” — Manpuku Mascot Storyboard</title>
 <style>
@@ -27,35 +27,6 @@
 
     --frame-w:330px;
   }
-  @media (prefers-color-scheme:dark){
-    :root:not([data-theme="light"]){
-      --ground:#121518;
-      --surface:#191D21;
-      --panel:#1F2429;
-      --ink:#FFFFFF;
-      --ink-2:#E9ECEE;
-      --ink-3:#AFB7BD;
-      --rule:#3B434A;
-      --rule-strong:#5A646C;
-      --accent:#A6CDE4;
-      --accent-soft:rgba(166,205,228,.16);
-      --sketch:#E3E7EA;
-    }
-  }
-  :root[data-theme="dark"]{
-    --ground:#121518;
-    --surface:#191D21;
-    --panel:#1F2429;
-    --ink:#FFFFFF;
-    --ink-2:#E9ECEE;
-    --ink-3:#AFB7BD;
-    --rule:#3B434A;
-    --rule-strong:#5A646C;
-    --accent:#A6CDE4;
-    --accent-soft:rgba(166,205,228,.16);
-    --sketch:#E3E7EA;
-  }
-
   *{box-sizing:border-box}
   body{
     margin:0;
@@ -105,7 +76,7 @@
 
   /* ---------- frame grid ---------- */
   .board{
-    margin-top:44px;
+    margin-top:clamp(48px,6vw,76px);
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(var(--frame-w),1fr));
     gap:clamp(22px,3vw,36px) clamp(18px,2.4vw,30px);
@@ -148,7 +119,7 @@
 
   /* ---------- lower sheets ---------- */
   .sheets{
-    margin-top:clamp(48px,6vw,76px);
+    margin-top:clamp(34px,4.4vw,52px);
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
     gap:clamp(24px,3vw,40px);
@@ -221,12 +192,12 @@
     .eyebrow{font-size:7pt;margin-bottom:3mm}
     .title{font-size:21pt}
     .title .quiet{font-size:8pt;margin-top:3mm}
-    .board{grid-template-columns:repeat(3,1fr);gap:7mm 5mm;margin-top:7mm}
+    .board{break-before:page;grid-template-columns:repeat(3,1fr);gap:7mm 5mm;margin-top:0}
     .frame{break-inside:avoid}
     .plate{border-width:1pt}
     .slug,.dur{font-size:6.5pt}
     .caption{font-size:7.6pt;line-height:1.4;padding-top:2.5mm}
-    .sheets{break-before:page;grid-template-columns:1fr 1fr;gap:8mm;margin-top:0}
+    .sheets{grid-template-columns:1fr 1fr;gap:8mm;margin-top:8mm}
     .sheet{break-inside:avoid;border-width:.75pt;padding:7mm}
     .sheet h2{font-size:7pt;margin-bottom:5mm}
     .prompt-card{font-size:14pt;border-width:1pt;padding:5mm}
@@ -276,6 +247,33 @@
       <span class="quiet">Manpuku Mascot — prompt-led short</span>
     </h1>
   </header>
+
+  <section class="sheets">
+
+    <div class="sheet">
+      <h2>The prompts</h2>
+      <div class="prompts">
+        <p class="prompt-card">A bowl of ramen, for me, is…<small>Opens the film · frame 01</small></p>
+        <p class="prompt-card">The best part of a ramen is…<small>Second half · frames 06–08</small></p>
+      </div>
+      <p class="statement-note">These go on screen as white type over the first frame — three seconds, no voice, nobody reads them aloud. Everything after is him finishing the sentence. A half-sentence gets an honest answer where a question gets a speech. Ask, then stay quiet; the second thing he says is the one you’ll use.</p>
+    </div>
+
+    <div class="sheet">
+      <h2>Alternate questions</h2>
+      <ul class="qs">
+        <li><span>Finish this sentence: a bowl of ramen is…</span><span class="buys">01 · 09</span></li>
+        <li><span>And this one: the best part of a ramen is…</span><span class="buys">06 · 08</span></li>
+        <li><span>What do people get wrong about ramen?</span><span class="buys">01</span></li>
+        <li><span>Which part can’t be rushed?</span><span class="buys">02 · 03</span></li>
+        <li><span>What’s in the bowl that nobody notices?</span><span class="buys">04 · 06</span></li>
+        <li><span>What’s still hard, after all this time?</span><span class="buys">05</span></li>
+        <li><span>What do you want someone to feel in the first mouthful?</span><span class="buys">08</span></li>
+        <li><span>How do you know a bowl was good?</span><span class="buys">09</span></li>
+      </ul>
+    </div>
+
+  </section>
 
   <main class="board">
 
@@ -924,33 +922,6 @@
     </article>
 
   </main>
-
-  <section class="sheets">
-
-    <div class="sheet">
-      <h2>The prompts</h2>
-      <div class="prompts">
-        <p class="prompt-card">A bowl of ramen, for me, is…<small>Opens the film · frame 01</small></p>
-        <p class="prompt-card">The best part of a ramen is…<small>Second half · frames 06–08</small></p>
-      </div>
-      <p class="statement-note">These go on screen as white type over the first frame — three seconds, no voice, nobody reads them aloud. Everything after is him finishing the sentence. A half-sentence gets an honest answer where a question gets a speech. Ask, then stay quiet; the second thing he says is the one you’ll use.</p>
-    </div>
-
-    <div class="sheet">
-      <h2>Alternate questions</h2>
-      <ul class="qs">
-        <li><span>Finish this sentence: a bowl of ramen is…</span><span class="buys">01 · 09</span></li>
-        <li><span>And this one: the best part of a ramen is…</span><span class="buys">06 · 08</span></li>
-        <li><span>What do people get wrong about ramen?</span><span class="buys">01</span></li>
-        <li><span>Which part can’t be rushed?</span><span class="buys">02 · 03</span></li>
-        <li><span>What’s in the bowl that nobody notices?</span><span class="buys">04 · 06</span></li>
-        <li><span>What’s still hard, after all this time?</span><span class="buys">05</span></li>
-        <li><span>What do you want someone to feel in the first mouthful?</span><span class="buys">08</span></li>
-        <li><span>How do you know a bowl was good?</span><span class="buys">09</span></li>
-      </ul>
-    </div>
-
-  </section>
 
   <footer>
     <span>Manpuku Mascot · Storyboard v1 · 9 frames</span>
