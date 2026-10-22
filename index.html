@@ -166,6 +166,73 @@
     color:var(--ink-3);white-space:nowrap;font-variant-numeric:tabular-nums;
   }
 
+  /* ---------- mock answers ---------- */
+  .script{
+    margin-top:clamp(48px,6vw,76px);
+    padding-top:22px;
+    border-top:1.5px solid var(--rule-strong);
+  }
+  .script-intro{margin:0 0 clamp(24px,3vw,34px);max-width:68ch;font-size:.875rem;line-height:1.55;color:var(--ink-2)}
+  .script .sheets{margin-top:0}
+  .answers{margin:0;padding:0;list-style:none;display:grid;gap:14px}
+  .answers li{
+    display:grid;grid-template-columns:auto 1fr;gap:4px 14px;
+    padding-bottom:14px;border-bottom:1px solid var(--rule);
+  }
+  .answers li:last-child{border-bottom:0;padding-bottom:0}
+  .answers .num{
+    grid-row:span 2;align-self:start;
+    background:#15181B;color:#FFFFFF;
+    font-family:var(--font-mono);font-size:.625rem;
+    letter-spacing:.1em;padding:3px 7px 2px;
+    font-variant-numeric:tabular-nums;
+  }
+  .answers .shot{
+    font-family:var(--font-mono);font-size:.625rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-3);
+  }
+  .answers q{
+    font-family:var(--font-display);
+    font-size:clamp(1rem,1.8vw,1.15rem);line-height:1.3;
+    quotes:"“" "”";text-wrap:pretty;
+  }
+  .prompt-head{
+    margin:0 0 16px;
+    font-family:var(--font-display);
+    font-size:clamp(1.15rem,2.3vw,1.45rem);line-height:1.25;
+  }
+  .prompt-head small{
+    display:block;margin-top:6px;
+    font-family:var(--font-mono);font-size:.5625rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-3);
+  }
+  .alts{margin-top:clamp(24px,3vw,40px)}
+  .alt-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+    gap:clamp(18px,2.4vw,26px) clamp(24px,3vw,40px);
+  }
+  .alt{margin:0;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+  .alt h3{
+    display:flex;gap:12px;align-items:baseline;justify-content:space-between;
+    margin:0 0 10px;
+    font-family:var(--font-display);font-weight:500;
+    font-size:clamp(1rem,1.8vw,1.1rem);line-height:1.3;
+  }
+  .alt h3 .buys{
+    font-family:var(--font-mono);font-size:.625rem;letter-spacing:.1em;
+    color:var(--ink-3);white-space:nowrap;font-variant-numeric:tabular-nums;
+  }
+  .alt dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 14px}
+  .alt dt{
+    font-family:var(--font-mono);font-size:.5625rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);padding-top:3px;
+  }
+  .alt dd{margin:0;font-size:.875rem;line-height:1.5;color:var(--ink-2);text-wrap:pretty}
+  .tips{margin-top:clamp(24px,3vw,40px)}
+  .tips .qs li{grid-template-columns:9em 1fr}
+  .tips .qs .buys{white-space:normal;text-transform:uppercase}
+
   footer{
     margin-top:clamp(40px,5vw,64px);
     padding-top:18px;
@@ -205,6 +272,21 @@
     .statement-note{font-size:8.5pt}
     .qs li{font-size:9pt;padding-bottom:3mm}
     .qs .buys{font-size:6.5pt}
+    .script{break-before:page;margin-top:0;padding-top:0;border-top:0}
+    .script-intro{font-size:8.5pt;margin-bottom:6mm}
+    .answers{gap:3mm}
+    .answers li{padding-bottom:3mm}
+    .answers .num,.answers .shot{font-size:6.5pt}
+    .answers q{font-size:10.5pt}
+    .prompt-head{font-size:13pt;margin-bottom:4mm}
+    .prompt-head small{font-size:6pt}
+    .alts{break-before:page;margin-top:0}
+    .alt-grid{grid-template-columns:1fr 1fr;gap:5mm 8mm}
+    .alt{break-inside:avoid;padding-bottom:3mm}
+    .alt h3{font-size:10.5pt;margin-bottom:2.5mm}
+    .alt h3 .buys,.alt dt{font-size:6pt}
+    .alt dd{font-size:8.5pt}
+    .tips{margin-top:6mm}
     footer{break-inside:avoid;margin-top:7mm;font-size:6.5pt}
   }
 </style>
@@ -922,6 +1004,94 @@
     </article>
 
   </main>
+
+  <section class="script">
+    <p class="eyebrow">Brand film script · Mock answers</p>
+    <p class="script-intro">Short, grounded phrases written to sound like spontaneous thoughts rather than a rehearsed speech. They show the shape of answer each frame needs, so the talent can finish the half-sentence naturally. Use them as a guide on set, not as lines to read.</p>
+
+    <div class="sheets">
+
+      <div class="sheet">
+        <h2>Prompt 1</h2>
+        <p class="prompt-head">A bowl of ramen, for me, is…<small>On screen · frame 01</small></p>
+        <ul class="answers">
+          <li><span class="num">01</span><span class="shot">Shop wide at 04:15</span><q>…about patience. Getting everything ready before anyone even walks through the door.</q></li>
+          <li><span class="num">02–03</span><span class="shot">Simmering broth &amp; bones in the pot</span><q>…hours of quiet work that you never actually see. The part you can’t rush.</q></li>
+          <li><span class="num">04</span><span class="shot">Tare pouring into the empty bowl</span><q>…building layers. Starting with the base long before the soup hits the bowl.</q></li>
+          <li><span class="num">05</span><span class="shot">Cutting noodle dough in flour mist</span><q>…getting the texture right every single morning. It takes years to get consistent.</q></li>
+        </ul>
+      </div>
+
+      <div class="sheet">
+        <h2>Prompt 2</h2>
+        <p class="prompt-head">The best part of a ramen is…<small>On screen · frames 06–08</small></p>
+        <ul class="answers">
+          <li><span class="num">06</span><span class="shot">Torching chashu &amp; egg slice</span><q>…that burst of heat right at the end.</q></li>
+          <li><span class="num">07</span><span class="shot">Overhead, building the bowl</span><q>…when all the elements come together in a single minute.</q></li>
+          <li><span class="num">08</span><span class="shot">Serving the steaming bowl at seat 3</span><q>…that very first sip of hot broth before you even touch the noodles.</q></li>
+          <li><span class="num">09</span><span class="shot">Empty bowl, chopsticks laid across</span><q>…leaving nothing behind.</q></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="sheet alts">
+      <h2>Alternate questions · mock answers</h2>
+      <div class="alt-grid">
+        <div class="alt">
+          <h3><span>What do people get wrong about ramen?</span><span class="buys">01</span></h3>
+          <dl>
+            <dt>1 sentence</dt><dd>“People think it’s fast food, but it takes hours of quiet preparation before the first customer even arrives.”</dd>
+            <dt>2 sentences</dt><dd>“People often view ramen as quick convenience food. In reality, it’s a craft that requires starting long before the sun comes up.”</dd>
+          </dl>
+        </div>
+        <div class="alt">
+          <h3><span>Which part can’t be rushed?</span><span class="buys">02 · 03</span></h3>
+          <dl>
+            <dt>1 sentence</dt><dd>“The broth — you simply can’t hurry the time it takes to extract depth from the bones.”</dd>
+            <dt>2 sentences</dt><dd>“You can never rush the boil when extraction takes hours. The broth will only give up its full flavor when you give it time.”</dd>
+          </dl>
+        </div>
+        <div class="alt">
+          <h3><span>What’s in the bowl that nobody notices?</span><span class="buys">04 · 06</span></h3>
+          <dl>
+            <dt>1 sentence</dt><dd>“The tare sitting quietly at the bottom, which sets the entire flavor foundation before the soup even hits.”</dd>
+            <dt>2 sentences</dt><dd>“Most people never notice the tare or the exact oil ratio at the bottom of the bowl. Yet that hidden layer dictates how every single spoonful tastes.”</dd>
+          </dl>
+        </div>
+        <div class="alt">
+          <h3><span>What’s still hard, after all this time?</span><span class="buys">05</span></h3>
+          <dl>
+            <dt>1 sentence</dt><dd>“Getting the exact same noodle texture every morning, regardless of humidity or weather.”</dd>
+            <dt>2 sentences</dt><dd>“Consistency with dough is still the hardest part after all these years. The air changes every day, so you constantly have to adjust your touch.”</dd>
+          </dl>
+        </div>
+        <div class="alt">
+          <h3><span>What do you want someone to feel in the first mouthful?</span><span class="buys">08</span></h3>
+          <dl>
+            <dt>1 sentence</dt><dd>“A wave of pure warmth and instant comfort the second steam reaches them.”</dd>
+            <dt>2 sentences</dt><dd>“I want them to feel an immediate sense of rich, satisfying warmth. That first mouthful should instantly make the rest of the world fade away.”</dd>
+          </dl>
+        </div>
+        <div class="alt">
+          <h3><span>How do you know a bowl was good?</span><span class="buys">09</span></h3>
+          <dl>
+            <dt>1 sentence</dt><dd>“When the bowl comes back to the pass completely empty with chopsticks laid across it.”</dd>
+            <dt>2 sentences</dt><dd>“You know it was good when there isn’t a single drop of broth left in the bowl. An empty dish on the counter says more than any word could.”</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet tips">
+      <h2>Director / interviewer tips on set</h2>
+      <ul class="qs">
+        <li><span class="buys">Prompt style</span><span>Read only the prompt — “Finish this sentence: a bowl of ramen is…”</span></li>
+        <li><span class="buys">Stay quiet</span><span>Stay quiet after they speak. The second thing they say is often the most natural choice for the edit.</span></li>
+        <li><span class="buys">If they get stuck</span><span>Give them a single keyword to build their thought around — “Think about the quiet morning setup” or “Think about the very first sip.”</span></li>
+      </ul>
+    </div>
+  </section>
 
   <footer>
     <span>Manpuku Mascot · Storyboard v1 · 9 frames</span>
